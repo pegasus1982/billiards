@@ -6,7 +6,6 @@ import { Table } from "../model/table"
 import { View } from "../view/view"
 import { Init } from "./init"
 import { Rack } from "../utils/rack"
-import { EventUtil } from "../events/eventutil"
 
 /**
  * Model, View, Controller container.
@@ -27,7 +26,7 @@ export class Container {
 
   constructor(element, log) {
     this.log = log
-    this.table = new Table(Rack.diamond())
+    this.table = new Table(Rack.cushion3())
     this.view = new View(element)
     this.table.balls.forEach(b => this.view.addMesh(b.mesh.mesh))
     this.view.addMesh(this.table.cue.mesh)
@@ -35,7 +34,8 @@ export class Container {
   }
 
   sendEvent(event) {
-    this.broadcast(EventUtil.serialise(event))
+    console.log(event)
+    // this.broadcast(EventUtil.serialise(event))
   }
 
   advance(elapsed) {

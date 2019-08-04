@@ -28,6 +28,7 @@ export class Rack {
     let diagonal = across.clone().applyAxisAngle(Rack.up, (Math.PI * 1) / 3)
     let pos = new Vector3(TableGeometry.tableX / 2, 0, 0)
     let diamond: Ball[] = []
+    
     diamond.push(Rack.cueBall())
     diamond.push(new Ball(Rack.jitter(pos)))
     pos.add(diagonal)
@@ -48,5 +49,20 @@ export class Rack {
     pos.add(diagonal)
     diamond.push(new Ball(Rack.jitter(pos)))
     return diamond
+  }
+
+  static cushion3() {
+    let across = new Vector3(0, Rack.gap, 0)
+    let diagonal = across.clone().applyAxisAngle(Rack.up, (Math.PI * 1) / 3)
+    let pos = new Vector3(TableGeometry.tableX / 2, 0, 0)
+    let cushion3: Ball[] = []
+    
+    cushion3.push(Rack.cueBall())
+
+    cushion3.push(new Ball(Rack.jitter(pos)))
+    
+    pos.add(diagonal).sub(across)
+    cushion3.push(new Ball(Rack.jitter(pos)))
+    return cushion3
   }
 }
